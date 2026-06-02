@@ -14,8 +14,13 @@ const client = new Client({
 */
 const client = new Client({
     puppeteer: {
-        executablePath: '/usr/bin/google-chrome-stable',
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        headless: true,
+        args: [
+            '--no-sandbox', 
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--no-zygote'
+        ]
     }
 });
 // Generar el código QR para vincular tu teléfono
