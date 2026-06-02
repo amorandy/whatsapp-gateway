@@ -6,11 +6,18 @@ const app = express();
 app.use(express.json());
 
 // 1. Configuración del Cliente de WhatsApp
+/*
 const client = new Client({
     authStrategy: new LocalAuth(), // Guarda la sesión para no escanear el QR cada vez
     puppeteer: { headless: true, args: ['--no-sandbox'] }
 });
-
+*/
+const client = new Client({
+    puppeteer: {
+        executablePath: '/usr/bin/google-chrome-stable',
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    }
+});
 // Generar el código QR para vincular tu teléfono
 client.on('qr', (qr) => {
     console.log('Escanea este código QR con tu WhatsApp:');
